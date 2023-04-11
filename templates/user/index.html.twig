@@ -1,0 +1,50 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}Users{% endblock %}
+
+{% block body %}
+
+
+<div style="margin-left: 300px">
+    <p style="margin-top: 30px;font-size: 25px;color: mediumpurple"><strong>All Users</strong></p>
+            <table class="table"  >
+        <thead >
+            <tr >
+                <th style="width: 60px ;color: mediumpurple">IdUser</th>
+                <th style="width: 60px ;color: mediumpurple">FirstName</th>
+                <th style="width: 60px ;color: mediumpurple">LastName</th>
+                <th style="width: 60px ;color: mediumpurple">Username</th>
+                <th style="width: 60px ;color: mediumpurple">Email</th>
+                <th  style="width: 60px ;color: mediumpurple">PhoneNumber</th>
+                <th style="width: 60px ;color: mediumpurple">Gender</th>
+                <th style=" color: mediumpurple">Role</th>
+
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.idUser }}</td>
+                <td>{{ user.firstName }}</td>
+                <td>{{ user.lastName }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.phoneNumber }}</td>
+                <td>{{ user.gender }}</td>
+                <td>{{ user.role }}</td>
+               {# <td>
+                    <a href="{{ path('app_user_show', {'idUser': user.idUser}) }}">show</a>
+                    <a href="{{ path('app_user_edit', {'idUser': user.idUser}) }}">edit</a>
+                </td>#}
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+        </div>
+
+{#    <a href="{{ path('app_user_new') }}">Create new</a>#}
+{% endblock %}

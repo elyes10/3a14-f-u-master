@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class MessengerMessages
 {
-    /**sym
+    /**
      * @var int
      *
      * @ORM\Column(name="id", type="bigint", nullable=false)
