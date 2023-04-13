@@ -13,24 +13,25 @@
                     <h2 class="title" >Sign up</h2>
 
                 <p >First Name</p>
+                {{ form_errors(form.firstName) }}
                     <div class="input-field" >
 
                         {{ form_label(form.firstName," ") }}
-                        {{ form_errors(form.firstName) }}
+
                         {{ form_widget(form.firstName, {'attr':{'class':'form-control p_input'}}) }}
                     </div>
-                <p >Last Name</p>
+                <p >Last Name</p>  {{ form_errors(form.lastName) }}
                 <div class="input-field" >
 
                     {{ form_label(form.lastName," ") }}
-                    {{ form_errors(form.lastName) }}
+
                     {{ form_widget(form.lastName, {'attr':{'class':'form-control p_input'}}) }}
                 </div>
-                <p >UserName</p>
+                <p >UserName</p>     {{ form_errors(form.username) }}
                 <div class="input-field">
 
                     {{ form_label(form.username," ") }}
-                    {{ form_errors(form.username) }}
+
                     {{ form_widget(form.username, {'attr':{'class':'form-control p_input'}}) }}
                 </div>
                 <p >Email</p>
@@ -40,35 +41,38 @@
                     {{ form_errors(form.email) }}
                     {{ form_widget(form.email, {'attr':{'class':'form-control p_input'}}) }}
                 </div>
-                <p >Password</p>
+                <p >Password</p>{{ form_errors(form.password) }}
                 <div class="input-field">
 
                     {{ form_label(form.password," ") }}
-                    {{ form_errors(form.password) }}
+
                     {{ form_widget(form.password, {'attr':{'class':'form-control p_input'}}) }}
                 </div>
-                <p >PhoneNumber</p>
+                <p >PhoneNumber</p> {{ form_errors(form.phoneNumber) }}
                 <div class="input-field">
 
                     {{ form_label(form.phoneNumber," ") }}
-                    {{ form_errors(form.phoneNumber) }}
+
                     {{ form_widget(form.phoneNumber, {'attr':{'class':'form-control p_input'}}) }}
                 </div>
-                <p >Gender</p>
+                <p >Gender</p> {{ form_errors(form.gender) }}
                 <div class="input-field">
 
                     {{ form_label(form.gender," ") }}
-                    {{ form_errors(form.gender) }}
+
                     {{ form_widget(form.gender, {'attr':{'class':'form-control p_input'}}) }}
                 </div>
-                <p >Role</p>
+                <p >Role</p>  {{ form_errors(form.role) }}
                 <div class="input-field">
 
                     {{ form_label(form.role," ") }}
-                    {{ form_errors(form.role) }}
+
                     {{ form_widget(form.role, {'attr':{'class':'form-control p_input'}}) }}
                 </div>
-                {{ form_row(form.Confirm, {'attr': {'class' : 'btn btn-success btn-block enter-btn'}} ) }}
+                <div style="position: absolute;top: 81%;right: 80%">
+                    {{ form_row(form.Confirm, {'attr': {'class' : 'btn btn-success btn-block enter-btn','style':'width:250px'}} ) }}
+                </div>
+
 
 
                 {{ form_end(form) }}

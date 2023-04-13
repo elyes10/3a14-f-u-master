@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class UserController extends AbstractController
 {
     #[Route('/', name: 'app_user_index', methods: ['GET'])]
-    public function index(EntityManagerInterface $entityManager): Response
+    public function index(EntityManagerInterface $entityManager): Response                          //show all users
     {
         $users = $entityManager
             ->getRepository(User::class)
@@ -27,7 +27,7 @@ class UserController extends AbstractController
 
     #[Route('/new', name: 'app_user_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
-    {
+    {                                                                                                       //add new user
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
@@ -36,7 +36,7 @@ class UserController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_front', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_user_login', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('front/SignInSignUp.html.twig', [
@@ -67,7 +67,7 @@ class UserController extends AbstractController
                 // Email and password are valid
                 $session = $request->getSession();
                 $session->set('user', $user);
-                if ($user->getRole() ==='Client')
+                if (($user->getRole() ==='Client')||($user->getRole() ==='Artiste'))
                 {return $this->redirectToRoute('app_front', [], Response::HTTP_SEE_OTHER);}
                 if ($user->getRole() ==='ADMIN')
                 {return $this->redirectToRoute('app_back', [], Response::HTTP_SEE_OTHER);}
@@ -82,7 +82,7 @@ class UserController extends AbstractController
 
     #[Route('/{idUser}', name: 'app_user_show', methods: ['GET'])]
     public function show(User $user): Response
-    {
+    {                                                                              //show 1 user by id (profile)
         return $this->render('user/show.html.twig', [
             'user' => $user,
         ]);
@@ -95,7 +95,7 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
+            $entityManager->flush();                                     //save to database
 
             return $this->render('user/show.html.twig', [
                 'user' => $user,
@@ -116,6 +116,6 @@ class UserController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_user_login', [], Response::HTTP_SEE_OTHER);
     }
 }
