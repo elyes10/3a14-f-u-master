@@ -10,28 +10,27 @@
 
                 {{ form_start(form) }}
 
-                    <h2 class="title" >Sign up</h2>
+                    <h2 class="title" >Login</h2>
 
-                <p >First Name</p>
-                    <div class="input-field" >
 
+                    <div  hidden>
                         {{ form_label(form.firstName," ") }}
                         {{ form_errors(form.firstName) }}
-                        {{ form_widget(form.firstName, {'attr':{'class':'form-control p_input'}}) }}
+                        {{ form_widget(form.firstName, {'attr':{'class':'form-control p_input','value': 'empty'}}) }}
                     </div>
-                <p >Last Name</p>
-                <div class="input-field" >
+
+                <div hidden >
 
                     {{ form_label(form.lastName," ") }}
                     {{ form_errors(form.lastName) }}
-                    {{ form_widget(form.lastName, {'attr':{'class':'form-control p_input'}}) }}
+                    {{ form_widget(form.lastName, {'attr':{'class':'form-control p_input', 'value': 'empty'}}) }}
                 </div>
-                <p >UserName</p>
-                <div class="input-field">
+
+                <div hidden>
 
                     {{ form_label(form.username," ") }}
                     {{ form_errors(form.username) }}
-                    {{ form_widget(form.username, {'attr':{'class':'form-control p_input'}}) }}
+                    {{ form_widget(form.username, {'attr':{'class':'form-control p_input', 'value': 'empty'}}) }}
                 </div>
                 <p >Email</p>
                 <div class="input-field">
@@ -47,26 +46,26 @@
                     {{ form_errors(form.password) }}
                     {{ form_widget(form.password, {'attr':{'class':'form-control p_input'}}) }}
                 </div>
-                <p >PhoneNumber</p>
-                <div class="input-field">
+
+                <div hidden>
 
                     {{ form_label(form.phoneNumber," ") }}
                     {{ form_errors(form.phoneNumber) }}
-                    {{ form_widget(form.phoneNumber, {'attr':{'class':'form-control p_input'}}) }}
+                    {{ form_widget(form.phoneNumber, {'attr':{'class':'form-control p_input', 'value': '0000000000000'}}) }}
                 </div>
-                <p >Gender</p>
-                <div class="input-field">
+
+                <div hidden>
 
                     {{ form_label(form.gender," ") }}
                     {{ form_errors(form.gender) }}
-                    {{ form_widget(form.gender, {'attr':{'class':'form-control p_input'}}) }}
+                    {{ form_widget(form.gender, {'attr':{'class':'form-control p_input', 'value': 'empty'}}) }}
                 </div>
-                <p >Role</p>
-                <div class="input-field">
+
+                <div hidden>
 
                     {{ form_label(form.role," ") }}
                     {{ form_errors(form.role) }}
-                    {{ form_widget(form.role, {'attr':{'class':'form-control p_input'}}) }}
+                    {{ form_widget(form.role, {'attr':{'class':'form-control p_input', 'value': 'empty'}}) }}
                 </div>
                 {{ form_row(form.Confirm, {'attr': {'class' : 'btn btn-success btn-block enter-btn'}} ) }}
 
@@ -80,8 +79,8 @@
                 <div class="content">
                     <h3 style="font-size: 30px">Already have an account ?</h3>
 
-                    <button class="btn transparent" style="margin-top: 20px" >
-                        <a href="{{ path('app_user_login') }}">Login</a>
+                    <button class="btn transparent" style="margin-top: 20px">
+                        <a href="{{ path('app_user_new') }}"> Sign in</a>
 
                     </button>
                 </div>

@@ -36,10 +36,45 @@ class UserController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_front', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('user/new.html.twig', [
+        return $this->renderForm('front/SignInSignUp.html.twig', [
+            'user' => $user,
+            'form' => $form,
+        ]);
+    }
+
+    #[Route('/login', name: 'app_user_login', methods: ['GET', 'POST'])]
+    public function login(Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $user = new User();
+        $form = $this->createForm(UserType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $formData = $form->getData();
+            $email = $formData->getEmail();
+            $password = $formData->getPassword();
+
+            $user = $entityManager->getRepository(User::class)->findOneBy([
+                'email' => $email,
+                'password' => $password,
+            ]);
+
+            if ($user) {
+
+                // Email and password are valid
+                $session = $request->getSession();
+                $session->set('user', $user);
+                if ($user->getRole() ==='Client')
+                {return $this->redirectToRoute('app_front', [], Response::HTTP_SEE_OTHER);}
+                if ($user->getRole() ==='ADMIN')
+                {return $this->redirectToRoute('app_back', [], Response::HTTP_SEE_OTHER);}
+            }
+        }
+
+        return $this->renderForm('front/Login.html.twig', [
             'user' => $user,
             'form' => $form,
         ]);
@@ -62,7 +97,9 @@ class UserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
+            return $this->render('user/show.html.twig', [
+                'user' => $user,
+            ]);
         }
 
         return $this->renderForm('user/edit.html.twig', [

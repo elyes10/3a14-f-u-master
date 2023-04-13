@@ -3,9 +3,18 @@
 {% block title %}New User{% endblock %}
 
 {% block body %}
-    <h1>Create new User</h1>
+    <div class="container mb-4">
 
-    {{ include('user/_form.html.twig') }}
+        {{ form_start(form) }}
+        <div class="form-group">
 
-    <a href="{{ path('app_user_index') }}">back to list</a>
+            {{ form_label(form.firstName,"firstName") }}
+            {{ form_errors(form.firstName) }}
+            {{ form_widget(form.firstName, {'attr':{'class':'form-control p_input'}}) }}
+        </div>
+
+
+        {{ form_row(form.Signup, {'attr': {'class' : 'btn btn-success btn-block enter-btn'}} ) }}
+        {{ form_end(form) }}
+    </div>
 {% endblock %}

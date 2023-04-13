@@ -80,7 +80,7 @@
                             <!-- menu start -->
                             <nav class="main-menu">
                                 <ul>
-                                    <li><a href="{{ path('home') }}">Home</a>
+                                    <li><a href="{{ path('app_front') }}">Home</a>
                                     </li>
                                     <li><a href="{{ path('blog') }}">Blog</a>
                                     </li>
@@ -95,11 +95,14 @@
                                     <li>
                                         <div class="header-icons">
                                             <a class="shopping-cart" href="{{ path('cart') }}"><i class="fas fa-shopping-cart"></i></a>
-                                            <a class="admin" href="{{ path('SignInSignUp') }}"><i class="fas fa-user"></i></a>
-                                            <a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
+                                            <a class="admin" href="{{ path('app_user_login') }}"><i class="fas fa-user"></i></a>
+                                            <a class="mobile-hide search-bar-icon" href="#">My profile</a>
+
+
                                         </div>
                                     </li>
                                 </ul>
+
                             </nav>
                             <a class="mobile-show search-bar-icon" href="#"><i class="fas fa-search"></i></a>
                             <div class="mobile-menu"></div>

@@ -4,15 +4,28 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 class FrontController extends AbstractController
 {
     #[Route('/', name: 'app_front')]
-    public function index(): Response
-    {
+    public function index(SessionInterface $session): Response
+    {    $username = " ";
+         $userid = 0;
+         $msg="you need to login first";
+        $user = $session->get('user');
+
+        if ($user) {
+            $username = $user->getUsername();
+            $userid = $user->getIdUser();
+            $msg="you are logged in as :";
+        }
         return $this->render('front/index.html.twig', [
             'controller_name' => 'FrontController',
+            'username' => $username,
+            'userid' => $userid,
+            'msg' => $msg,
         ]);
     }
     /**

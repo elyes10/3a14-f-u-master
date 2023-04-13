@@ -2,6 +2,7 @@
 
 {% block body %} 	
 	<!-- search area -->
+
 	<div class="search-area">
 		<div class="container">
 			<div class="row">
@@ -9,9 +10,11 @@
 					<span class="close-btn"><i class="fas fa-window-close"></i></span>
 					<div class="search-bar">
 						<div class="search-bar-tablecell">
-							<h3>Search For:</h3>
-							<input type="text" placeholder="Keywords">
-							<button type="submit">Search <i class="fas fa-search"></i></button>
+							<p style="font-size: 48px;color: white">{{ msg }}</p>
+							{% if userid!=0 %}
+							<a class="admin" href="{{ path('app_user_show', {'idUser': userid}) }}"> <span style="font-size:48px;">{{ username }}</span> <i class="fas fa-user"></i></a>
+							{% endif %}
+
 						</div>
 					</div>
 				</div>
@@ -24,9 +27,12 @@
 	<div class="homepage-slider">
 		<!-- single home slider -->
 		<div class="single-homepage-slider homepage-bg-1">
+
 			<div class="container">
 				<div class="row">
+
 					<div class="col-md-12 col-lg-7 offset-lg-1 offset-xl-0">
+
 						<div class="hero-text">
 							<div class="hero-text-tablecell">
 								<p class="subtitle">Fresh & Organic</p>
